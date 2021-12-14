@@ -1,5 +1,5 @@
 #! https://zhuanlan.zhihu.com/p/440338367
-![](image/algorithmHead.jpg)
+![](ADT/image/algorithmHead.jpg)
 
 # 数据结构与算法学习笔记
 
@@ -25,7 +25,7 @@
 
 [不相交集 (disjointSet)](https://zhuanlan.zhihu.com/p/443838992)
 
-别急，我会慢慢更！！！欲知后事如何，还请大佬爷们点个收藏把。
+别急，我会慢慢更！！！欲知后事如何，还请大佬爷们点个收藏吧。
 
 ## 资源获取
 本系列所用代码已上传到 [Github](https://github.com/kaiyuanX/Algorithm-in-C) (还不是最终版，但请你们先睹为快)
@@ -33,16 +33,16 @@
 什么？上面链接打不开？等我稍后发个百度网盘的链接吧。
 
 ## 参考
-* [数据结构与算法分析：C语言描述](https://book.douban.com/subject/1139426/)
+* [数据结构与算法分析：C语言描述( 原书第二版 )](https://book.douban.com/subject/1139426/)
 
 > 还有一件事，本系列所用代码大多是此书上的原代码，我最多加了点注释。
 > 
-> 我只是一个整理别人东西，且整理水平有待提高的屑
+> 我只是一个整理别人东西，且整理水平有待提高的屑。
 
 ---
 
-![](image/begging.png)
+![](ADT/image/begging.png)
 
-![](image/zan.png)
+![](ADT/image/zan.png)
 
 ---
