@@ -25,7 +25,11 @@
 
 [不相交集 (disjointSet)](https://zhuanlan.zhihu.com/p/443838992)
 
-别急，我会慢慢更！！！欲知后事如何，还请大佬爷们点个收藏吧。
+[排序-part1 (Sort)](https://zhuanlan.zhihu.com/p/445521053)
+
+[排序-part2 (Sort)](https://zhuanlan.zhihu.com/p/446792962)
+
+别急，我会慢慢更！！！欲知后事如何，还请佬爷们点个收藏吧。
 
 ## 资源获取
 本系列所用代码已上传到 [Github](https://github.com/kaiyuanX/Algorithm-in-C) (还不是最终版，但请你们先睹为快)
