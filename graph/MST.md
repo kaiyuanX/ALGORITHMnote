@@ -33,7 +33,7 @@ $w$ 进入 $V_{new}$ 前 , 不属于 $V_{new}$ , 所以 $w$ 进来之后**不会
 
 ![](image/2021-12-19-15-27-25.png)
 
-② 优化获取 $min(V_{new},w)$ 的方式
+② 优化获取 $min(V_{new},w)$ 的方式 ( 与优化 `Dijstra` 找 `smallest unknown distance vertex` 差不多 )
 
 ==复杂度==
 
