@@ -15,7 +15,7 @@
 ---
 
 # 排序-part2 (Sort) 
-代码在 `classic-algorithm/sort/sort2.c`
+代码在 `sort/sort2.c`
 
 ---
 
@@ -89,6 +89,8 @@
 `②` 的示意图如下
 
 ![](image/2021-12-14-21-06-10.png)
+
+---
 
 ## 基数排序 (radix sort)
 [示例视频](https://www.bilibili.com/video/BV1A54y1D7Kd?from=search&seid=8508806430685224390&spm_id_from=333.337.0.0)

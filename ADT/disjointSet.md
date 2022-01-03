@@ -52,6 +52,8 @@ SetType Find(ElementType X, DisjSet S)
 ![](image/2021-12-03-15-09-46.png)
 
 ```c
+/* 注意这里的参数并不是 ElementType , 而是 SetType */
+/* 传进函数的参数已经是集合这个类型了 */
 void SetUnion(DisjSet S, SetType Root1, SetType Root2)
 {
     S[Root2] = Root1;
@@ -122,8 +124,8 @@ SetType Find(ElementType X, DisjSet S)
 }
 ```
 
-路径压缩与按大小求并完全兼容。
+**路径压缩**与**按大小求并**完全兼容。
 
-路径压缩与按高度求并不完全兼容，因为压缩之后，我们根本不清楚如何有效的更新它们的高度。所以在这两个例程同时实现时，我们往往认为高度只是一个估计值。( 有时称它为秩--rank )
+**路径压缩**与**按高度求并**不完全兼容，因为压缩之后，我们根本不清楚如何有效的更新它们的高度。所以在这两个例程同时实现时，我们往往认为高度只是一个估计值。( 有时称它为秩--rank )
 
 ---
