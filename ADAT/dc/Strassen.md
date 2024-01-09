@@ -1,9 +1,10 @@
 # 矩阵乘法之 Strassen
 
 `CLRS 43p`
-`DSAA 285p`
+`DSAA 285p` 一些运算问题的理论改进
 
-### pseudocode for Strassen's algorithm
+## pseudocode for Strassen's algorithm
+
 ```
 STRASSEN(A, B)
     n = A.rows
@@ -40,11 +41,12 @@ STRASSEN(A, B)
     C[n / 2 + 1..n][1..n / 2] = P[3] + P[4]
     C[n / 2 + 1..n][n / 2 + 1..n] = P[5] + P[1] - P[3] - P[7]
     return C
-
 ```
 
-### 当 n 不是偶数时算法的一点调节
+## 当 n 不是偶数时算法的一点调节
+
 We can just extend it to an $n\times n$ matrix and pad it with zeroes. It's obviously $\Theta(n^{\lg7})$
 
-### 适用条件
+## 适用条件
+
 ![](image/2022-03-25-12-15-26.png)
