@@ -1,17 +1,28 @@
-## 关于 "Partial match" table
-`KMP` 的一个要点是计算一个 `"Partial match" table`
+- [KMP](#kmp)
+  - [LSP](#lsp)
+      - [快速得到 lsp](#快速得到-lsp)
+  - [代码](#代码)
+  - [复杂度](#复杂度)
 
-关于这部分我至少看到两种不同的处理形式
+**参考**
 
-#### 把这部分命名为 `next[]`
-约定从左到右 , 在 `sstr` 中找 `tstr`
-`next[]` 解释
-`next[i]` : 匹配在 `tstr[i] == sstr[j]` 处失败 , 应该跳转到 `tstr[next[i]]` 继续与 `sstr[j]` 匹配 
-`next[0]` : 固定为 -1 , 是一种特殊情况 , 在 `tstr[0] == sstr[j]` 处匹配失败 , -1 作为标志 , 下一步为 `tstr[0]` 与 `sstr[j+1]` 匹配
+- [如何更好地理解和掌握 KMP 算法 - 阮行止](https://www.zhihu.com/question/21923021/answer/1032665486) 
+- [字符串匹配的 KMP 算法 - 阮一峰](https://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm.html)
 
-#### 把这部分命名为 `lsp[]`
+---
+
+# KMP
+
+基本思路见这里 : [阮一峰的网络日志](https://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm.html)
+
+## LSP
+
+约定从左到右 , 在 `sstr` 中找 `pat`
+
 `lsp[]` : longest proper prefix
-eg: S="abcab" 
+
+eg: S="abcab"
+
 ```
 lsp[0] = 0 , always 
 lsp[1] = 0 
@@ -19,21 +30,60 @@ lsp[3] = 1
 lsp[4] = 2 
 ```
 
-两种的核心都与 `字串公共前后缀` 相关联 , 只是某些细节的不一样 , 初始条件不一样
+匹配在 `pat[i] == sstr[j]` 处失败，应该跳转到 `pat[lsp[i - 1]]` 继续与 `sstr[j]` 匹配
 
----
+#### 快速得到 lsp
+
+从 `lsp[x-1]` 到 `lsp[x]`
+
+```c
+temp = lsp[x-1]
+
+if pat[x] = pat[lsp[x-1]]   // 1.
+    lsp[x] = lsp[x-1] + 1
+
+if pat[x] != pat[temp]
+    temp = lps[temp - 1];
+
+if temp = 0                 // 2. 
+    lsp[x] = 0
+
+直到 1. 或者 2. 成立
+```
+
+[如何更好地理解和掌握 KMP 算法 - 阮行止](https://www.zhihu.com/question/21923021/answer/1032665486) 文章中的图解解释得已经很好
+## 代码
+
+```python
+def search():
+tar =0      # tar:主串中将要匹配的位置
+pos = 0     # poS:模式串中将要匹配的位置
+while tar < len(s):
+    if s[tar] =p[pos]:  # 若两个字符相等，则 tar, pos 各进一步
+        tar += 1
+        pos += 1
+    elif pos:           # 失配了，若 pos != 0，则依据 next 数组移动标尺
+        pos = lps[pos-1]
+    else:
+        tar += 1        # pos[0]失配了，直接把标尺右移一位
+
+    if poslen(p):       # pos 走到了 len(p)，匹配成功
+        print(tar - pos)    # 记录一次结果
+        pos = lps[pos-1]    # 移动标尺
+```
 
 ## 复杂度
+
 设 $N$ 为目标 , $M$ 为模式 , 分别长 $n$ 与 $m$
 
-1. "Partial match" table (failure function) : $O(m)$
-2. 搜索 : $O(n)$
+1. 摊还分析，搜索 : $O(n)$
+2. 摊还分析，不难证明构建 `lsp[]` 的时间复杂度 : $O(m)$
 
 一共 $O(m+n)$ ( 平均 )
 
 ==解释==
 
-① 
+`1. `
 
 $j$ 的回溯只会影响搜索主循环次数的上下界 $[n, 2n]$
 
@@ -41,13 +91,11 @@ $j$ 的回溯只会影响搜索主循环次数的上下界 $[n, 2n]$
 
 在这种情况下，对于 $n$ 中的每个字符，实际上都比较了 $2$ 次，所以一共执行了 $2n$ 次循环
 
-这已经是循环次数的上限 , 为 $O(n)$
+这已经是循环次数的上限 $O(n)$
 
-② 
+`2. `
 
 快速求 `next[]` 思路
-
-![](image/2022-01-03-16-16-39.png)
 
 ```c
 if (pat[i] != pat[len])
@@ -64,8 +112,4 @@ if (pat[i] != pat[len])
 }
 ```
 
-[参考这篇文章](https://www.zhihu.com/question/21923021/answer/1032665486) 
-
-与 ① 同样的道理 , 复杂度 $O(m)$
-
-> 详细的推导暂时不会 : 主要指平均的回溯次数相关证明
+len 的回溯也没有影响时间复杂度 $O(m)$
